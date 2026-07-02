@@ -6,7 +6,7 @@
     <services>
         <!-- API Service -->
         <service id="myflyingbox.api.service" class="MyFlyingBox\Service\LceApiService" public="true">
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
         </service>
 
         <!-- Dimension Service -->
@@ -25,14 +25,14 @@
         <service id="myflyingbox.back_office_shipment_updater.service" class="MyFlyingBox\Service\BackOfficeShipmentUpdater" public="true">
             <argument type="service" id="myflyingbox.price_surcharge.service"/>
             <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
         </service>
 
         <!-- Quote Service -->
         <service id="myflyingbox.quote.service" class="MyFlyingBox\Service\QuoteService" public="true">
             <argument type="service" id="myflyingbox.api.service"/>
             <argument type="service" id="myflyingbox.dimension.service"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
         </service>
 
         <!-- Shipment Service -->
@@ -40,25 +40,25 @@
             <argument type="service" id="myflyingbox.api.service"/>
             <argument type="service" id="myflyingbox.dimension.service"/>
             <argument type="service" id="myflyingbox.api_error_translator.service"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
         </service>
 
         <!-- Tracking Notification Service (for email notifications) -->
         <service id="myflyingbox.tracking_notification.service" class="MyFlyingBox\Service\TrackingNotificationService" public="true">
             <argument type="service" id="mailer"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
         </service>
 
         <!-- Tracking Service -->
         <service id="myflyingbox.tracking.service" class="MyFlyingBox\Service\TrackingService" public="true">
             <argument type="service" id="myflyingbox.api.service"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
             <argument type="service" id="myflyingbox.tracking_notification.service"/>
         </service>
 
         <!-- Webhook Handler Service -->
         <service id="myflyingbox.webhook_handler.service" class="MyFlyingBox\Service\WebhookHandlerService" public="true">
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
             <argument type="service" id="myflyingbox.tracking_notification.service"/>
         </service>
 
@@ -82,7 +82,7 @@
         <!-- CLI Commands -->
         <service id="myflyingbox.command.sync_tracking" class="MyFlyingBox\Command\SyncTrackingCommand">
             <argument type="service" id="myflyingbox.tracking.service"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
             <tag name="console.command"/>
         </service>
 
@@ -90,7 +90,7 @@
         <service id="myflyingbox.listener.order" class="MyFlyingBox\EventListener\OrderEventListener">
             <argument type="service" id="myflyingbox.shipment.service"/>
             <argument type="service" id="request_stack"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>
@@ -111,7 +111,7 @@
     <hooks>
         <hook id="myflyingbox.hook.front" class="MyFlyingBox\Hook\FrontHook">
             <argument type="service" id="myflyingbox.quote.service"/>
-            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="thelia.logger"/>
             <argument type="service" id="thelia.parser"/>
             <argument type="service" id="thelia.parser.asset.resolver"/>
             <argument type="service" id="event_dispatcher"/>
